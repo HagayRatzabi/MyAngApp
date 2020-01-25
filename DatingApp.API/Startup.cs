@@ -28,7 +28,6 @@ namespace DatingApp.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddCors();
             services.AddControllers();
             //services.AddMvc(option => option.EnableEndpointRouting = false);
         }
@@ -46,14 +45,14 @@ namespace DatingApp.API
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                // app.UseHsts();
             }
-                app.UseAuthorization();
                 app.UseRouting();
+             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+                app.UseAuthorization();
                 app.UseEndpoints(endpoints=>{
                     endpoints.MapControllers();
                 });
             //app.UseHttpsRedirection();
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            //app.UseMvc();
+            ///app.UseMvc();
             
         }
     }
