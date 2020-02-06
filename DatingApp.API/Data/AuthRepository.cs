@@ -65,7 +65,7 @@ namespace DatingApp.API.Data
 
         }
 
-        public async bool Register(string username)
+        public async Task<bool> Register(string username)
         {
             if (await _context.Users.AnyAsync(x=> x.Username == username))
             {
