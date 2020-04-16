@@ -7,6 +7,6 @@ namespace DatingApp.API.Data
     {
        Task<User> Register(User user, string password);
        Task<User> Login(string username, string password);
-       bool Register(string user);
+       Task<bool> UserExist(string user);
     }
 }
